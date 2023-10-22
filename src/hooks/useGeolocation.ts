@@ -1,6 +1,13 @@
 import { useState } from "react";
 
-export function useGeolocation() {
+interface TRgeolocation {
+  getPosition: void,
+  position: {lat: string, lng: string},
+  isLoading: boolean,
+  error: null | string
+}
+
+export function useGeolocation(): TRgeolocation {
   const [position, setPosition] = useState({});
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
