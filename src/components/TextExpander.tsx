@@ -16,20 +16,20 @@ function TextExpander({
   margin = "20px",
   onClickButton,
 }: {
-  children?: any;
-  collapsedNumWords?: number;
-  expandButtonText?: string;
-  collapseButtonText?: string;
-  buttonColor?: string;
-  defaultExpand?: boolean;
-  bgColor?: string;
-  textColor?: string;
+  children: any;
+  collapsedNumWords: number;
+  expandButtonText: string;
+  collapseButtonText: string;
+  buttonColor: string;
+  defaultExpand: boolean;
+  bgColor: string;
+  textColor: string;
   className?: string;
   borderRadius?: string;
-  border?: string;
-  padding?: string;
-  margin?: string;
-  onClick?: any;
+  border: string;
+  padding: string;
+  margin: string;
+  onClickButton?: any;
 }) {
   const [isExpand, setIsExpand] = useState(defaultExpand);
 
@@ -45,11 +45,11 @@ function TextExpander({
   const displayText = children.split(" ").slice(0, collapsedNumWords).join(" ");
 
   return (
-    <div className={className} style={className ? null : styles}>
+    <div className={className || ""} style={styles}>
       {isExpand ? children : displayText + "..."}
       <span
         style={{ cursor: "pointer", color: buttonColor }}
-        onClick={onClick ? onClickButton : () => setIsExpand(!isExpand)}
+        onClick={onClickButton ? onClickButton : () => setIsExpand(!isExpand)}
       >
         {isExpand ? " " + collapseButtonText : " " + expandButtonText}
       </span>
