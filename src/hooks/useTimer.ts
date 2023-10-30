@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 
-interface TtimerReturn {
-  runTimer: () => void;
+interface RCountdown {
+  runCountdown: () => void;
   currentCount: number;
   isRunning: boolean;
 }
 
-export function useTimer(time: number, action: () => any): TtimerReturn {
+export function useCountdown(time: number, action: any): RCountdown {
   const [currentCount, setCount] = useState(time);
   const [isRunning, setIsRunning] = useState(false);
 
-  function runTimer() {
+  function runCountdown() {
     setIsRunning(true);
   }
 
@@ -32,5 +32,5 @@ export function useTimer(time: number, action: () => any): TtimerReturn {
     };
   }, [currentCount, isRunning, action]);
 
-  return { runTimer, currentCount, isRunning };
+  return { runCountdown, currentCount, isRunning };
 }
