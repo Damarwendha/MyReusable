@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 
 interface TtimerReturn {
-  runTimer: void;
+  runTimer: () => void;
   currentCount: number;
   isRunning: boolean;
 }
 
-export function useTimer(time: number, action: (any) => any): TtimerReturn {
+export function useTimer(time: number, action: () => any): TtimerReturn {
   const [currentCount, setCount] = useState(time);
   const [isRunning, setIsRunning] = useState(false);
 
@@ -15,7 +15,7 @@ export function useTimer(time: number, action: (any) => any): TtimerReturn {
   }
 
   useEffect(() => {
-    let interval;
+    let interval: any;
     if (isRunning && currentCount > 0) {
       interval = setInterval(() => {
         setCount((c) => c - 1);
