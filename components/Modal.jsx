@@ -13,7 +13,6 @@ import { useOutsideClick } from "@/hooks/useOutsideClick";
 import { useOverflowHidden } from "@/hooks/useOverflowHidden";
 
 import { HiXMark } from "react-icons/hi2";
-import { Button } from "flowbite-react";
 
 const ModalContext = createContext();
 
@@ -46,6 +45,7 @@ const types = {
 };
 
 // window children props have access to the closeModal method.
+// -- Children should be a component!
 function Window({ children, id, type = "fit" }) {
   const [isClient, setIsClient] = useState(false);
 
@@ -59,7 +59,7 @@ function Window({ children, id, type = "fit" }) {
 
   const isIdEq = openId === id;
 
-  // prevent page scrolling when modal open
+  // prevent body page scrolling when modal open (in modal window still can scroll)
   useOverflowHidden(isIdEq, [openId, id]);
 
   if (!isIdEq) return null;
@@ -67,15 +67,15 @@ function Window({ children, id, type = "fit" }) {
   const content = (
     <div className="fixed top-0 left-0 z-50 w-screen h-screen backdrop-brightness-50">
       <div
-        className={`relative p-4 bg-white pt-14 ${types[type]}`}
+        className={`relative p-4 bg-white pt-14 overflow-scroll ${types[type]}`}
         ref={refInside}
       >
-        <Button
-          className="absolute right-0 top-2 hover:opacity-50"
+        <HiXMark
+          color="black"
+          size={25}
+          className="absolute right-4 top-4 hover:opacity-50 cursor-pointer"
           onClick={close}
-        >
-          <HiXMark color="black" size={25} />
-        </Button>
+        />
         {/* pass closeModal prop to children elem */}
         <div>{cloneElement(children, { closeModal: close })}</div>
       </div>
