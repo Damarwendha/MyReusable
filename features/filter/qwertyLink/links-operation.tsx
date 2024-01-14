@@ -1,10 +1,3 @@
-"use client";
-
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-
 function LinksOperation() {
   const useParams = useSearchParams();
 
@@ -37,19 +30,9 @@ function LinksOperation() {
   }
 
   return (
-    <div className="relative w-max">
       <Input
         className="w-48 sm:w-96 ps-11 peer"
         onChange={(e) => handleQuery(e.target.value)}
         placeholder="Search Keyword"
         value={q}
       />
-      <Search
-        className="absolute transition-all duration-100 transform -translate-y-1/2 text-muted-foreground peer-focus:text-blue-500 left-3 top-1/2 bottom-1/2"
-        size={20}
-      />
-    </div>
-  );
-}
-
-export default LinksOperation;
