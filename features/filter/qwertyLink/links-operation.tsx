@@ -12,7 +12,7 @@ function LinksOperation() {
   useEffect(() => {
     const params = new URLSearchParams(useParams);
 
-    // Only execute when user not type anything after 500ms
+    // Only executed when user not type anything after 500ms
     const timeoutId = setTimeout(() => {
       if (q === "") {
         params.delete("q");
