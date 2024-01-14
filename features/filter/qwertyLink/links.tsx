@@ -58,7 +58,6 @@ function LinkList() {
           linkValue.toLocaleLowerCase().includes(qParam.toLocaleLowerCase())
         ) {
           acc.push(link);
-          return acc;
         }
 
       return acc;
