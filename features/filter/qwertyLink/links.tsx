@@ -54,14 +54,12 @@ function LinkList() {
     linksFiltered = links.reduce((acc, link) => {
       const linkValue = link.title + link.shorten + link.src + link.created_at;
 
-      if (qParam) {
         if (
           linkValue.toLocaleLowerCase().includes(qParam.toLocaleLowerCase())
         ) {
           acc.push(link);
           return acc;
         }
-      }
 
       return acc;
     }, [] as ILinks[]);
