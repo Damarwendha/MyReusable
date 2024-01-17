@@ -14,34 +14,6 @@ const links = [
     shorten: "https://qwertylink.com/HUHui873",
     created_at: "12/12/2021",
   },
-  {
-    id: 2,
-    title: "Capcut Template Ampun Dijeeeeeeeeeeeeeeeee",
-    src: "https://www.youtube.com/dipewjdopewpdBBOUDOeRxfItbRhnrk",
-    shorten: "https://qwertylink.com/PojdIidw",
-    created_at: "11/01/2024",
-  },
-  {
-    id: 3,
-    title: "Aplikasi DANA Mod",
-    src: "https://www.dana.id/",
-    shorten: "https://qwertylink.com/dnwkoIJ",
-    created_at: "14/01/2024",
-  },
-  {
-    id: 4,
-    title: "books about how to get a girlfriend",
-    src: "https://www.mediafire.com/watch?v=RxfItbRhniafjpOHHIOErk",
-    shorten: "https://qwertylink.com/HUHui873",
-    created_at: "16/01/2024",
-  },
-  {
-    id: 5,
-    title: "GTA 7 Mobile APK",
-    src: "https://www.mediafire.com/watch?v=RxfItbRhniafjpOHHIOErk",
-    shorten: "https://qwertylink.com/ue3u",
-    created_at: "16/01/2024",
-  },
 ];
 
 function LinkList() {
