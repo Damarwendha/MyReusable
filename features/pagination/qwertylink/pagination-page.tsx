@@ -14,7 +14,7 @@ const DATA_EACH_PAGE = 10;
 function ProofPayment({ searchParams }: ProofPaymentProps) {
   const page = searchParams.page ?? "1";
 
-  // i want to show the latest data first... thats why this variable exits
+  // this variable exits because i want to show the latest data first... and this also used for total_pages
   const latestId = payments.reduce((acc, { payment_id }) => {
     return payment_id > acc ? payment_id : acc;
   }, 0);
