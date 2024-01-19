@@ -9,10 +9,10 @@ const payments: IPayment[] = [
   },
 ]
 
+const DATA_EACH_PAGE = 10;
+
 function ProofPayment({ searchParams }: ProofPaymentProps) {
   const page = searchParams.page ?? "1";
-
-  const DATA_EACH_PAGE = 10;
 
   // i want to show the latest data first... thats why this variable exits
   const latestId = payments.reduce((acc, { payment_id }) => {
