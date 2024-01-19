@@ -1,3 +1,5 @@
+const TRIGGER_SEARCH_IN_MS = 500
+
 function LinksOperation() {
   const useParams = useSearchParams();
 
@@ -20,7 +22,7 @@ function LinksOperation() {
         params.set("q", q);
       }
       push(`?${params}`);
-    }, 500);
+    }, TRIGGER_SEARCH_IN_MS);
 
     return () => clearTimeout(timeoutId);
   }, [q, push, useParams]);
