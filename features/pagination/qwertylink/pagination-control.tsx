@@ -20,6 +20,8 @@ function PaginationControl({
   return (
     <Pagination>
       <PaginationContent>
+        
+{/*         only show previous btn and number one btn when currentPage > 1 */}
         {+page > 1 && (
           <>
             <PaginationItem>
@@ -32,6 +34,8 @@ function PaginationControl({
             </PaginationItem>
           </>
         )}
+        
+{/*         current page */}
         <PaginationItem>
           <PaginationLink
             className="border-b-2 border-brand"
@@ -40,6 +44,8 @@ function PaginationControl({
             {page}
           </PaginationLink>
         </PaginationItem>
+
+{/*         only show latest page when it exits */}
         {totalPages !== +page && (
           <>
             <PaginationItem>
