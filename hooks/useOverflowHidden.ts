@@ -21,7 +21,9 @@ function useOverflowHidden(
     }
 
     return () => {
-      bodyElement.style.overflow = "visible";
+      bodyElement.style.position = "unset";
+      bodyElement.style.overflowY = "unset";
+      bodyElement.style.width = "unset";
     };
   }, deps);
 }
