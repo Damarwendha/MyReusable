@@ -19,7 +19,7 @@ export function useCopyClipboard<T extends HTMLElement>(
     setIsCopied(true);
 
     // Do additional thing after copied
-    // I add right away in here is to reduce boiler code in my components
+    // I add right away in here to reduce boiler code in my components
     toast.success("Referral Link Copied!", {
       className: "toast-success",
     });
