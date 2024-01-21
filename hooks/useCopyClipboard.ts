@@ -1,17 +1,29 @@
-import { useCallback, useEffect, useState } from "react";
+import {
+  MutableRefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import toast from "react-hot-toast";
 
-interface IUseCopyClipboardProps {
-  copy: (toCopy: string) => void;
-  isCopied: boolean;
-}
-
-export function useCopyClipboard(timeout = 1000): IUseCopyClipboardProps {
+export function useCopyClipboard<T extends HTMLElement>(
+  text: string,
+  timeout = 1000
+) {
   const [isCopied, setIsCopied] = useState<boolean>(false);
+  const ref = useRef() as MutableRefObject<T>;
 
-  const copy = useCallback(async (text: string) => {
+  const copy = useCallback(async () => {
     await navigator.clipboard.writeText(text);
     setIsCopied(true);
-  }, []);
+
+    // Do additional thing after copied
+    // I add right away in here is to reduce boiler code in my components
+    toast.success("Referral Link Copied!", {
+      className: "toast-success",
+    });
+  }, [text]);
 
   useEffect(() => {
     if (isCopied) {
@@ -25,5 +37,14 @@ export function useCopyClipboard(timeout = 1000): IUseCopyClipboardProps {
     }
   }, [isCopied, setIsCopied, timeout]);
 
-  return { copy, isCopied };
+  useEffect(() => {
+    const refEl = ref.current;
+
+    if (refEl) {
+      refEl.addEventListener("click", copy);
+      return () => refEl.removeEventListener("click", copy);
+    }
+  }, [copy]);
+
+  return { ref, isCopied };
 }
