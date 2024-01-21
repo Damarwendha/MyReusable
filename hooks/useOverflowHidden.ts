@@ -1,8 +1,8 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
+import { useResizeListener } from "./useResizeListener";
 
 // Q: Why didn't you simply use 'overflow: hidden' instead?
-// A: The reason for this is that overflow: hidden makes the site jump and take up the area where the scroll was.
+// A: The reason for this is that because overflow: hidden makes the site jump and take up the area where the scroll was.
 
 function useOverflowHidden(
   setIsHidden: boolean = true,
@@ -10,9 +10,15 @@ function useOverflowHidden(
 ) {
   const [scrollTopPosition, setScrollTopPosition] = useState(0);
 
-  useEffect(() => {
-    const bodyElement = document.querySelector("body") as HTMLElement;
+  const bodyElement = document.querySelector("body") as HTMLElement;
 
+  // This is to fix resize behaviour,
+  // even tho its still look weird after resizing from mobile to dekstop when the modal open
+  useResizeListener(() => {
+    bodyElement.style.top = "0";
+  });
+
+  useEffect(() => {
     if (setIsHidden) {
       bodyElement.style.setProperty(
         "--st",
@@ -45,7 +51,9 @@ function useOverflowHidden(
       bodyElement.style.overflowY = "unset";
       bodyElement.style.width = "unset";
     };
-  }, deps);
+    
+  /* eslint-disable react-hooks/exhaustive-deps */
+  }, [...deps]);
 }
 
 export { useOverflowHidden };
