@@ -1,59 +1,50 @@
 import { useEffect, useState } from "react";
-import { useResizeListener } from "./useResizeListener";
 
 // Q: Why didn't you simply use 'overflow: hidden' instead?
 // A: The reason for this is that because overflow: hidden makes the site jump and take up the area where the scroll was.
 
 function useOverflowHidden(
-  setIsHidden: boolean = true,
+  isHiddenOverflow: boolean,
   deps: React.DependencyList = []
 ) {
-  const [scrollTopPosition, setScrollTopPosition] = useState(0);
-
-  const bodyElement = document.querySelector("body") as HTMLElement;
-
-  // This is to fix resize behaviour,
-  // even tho its still look weird after resizing from mobile to dekstop when the modal open
-  useResizeListener(() => {
-    bodyElement.style.top = "0";
-  });
+  const [scrollTopPosition, setScrollTopPosition] = useState(
+    document.documentElement.scrollTop
+  );
 
   useEffect(() => {
-    if (setIsHidden) {
-      bodyElement.style.setProperty(
-        "--st",
-        -document.documentElement.scrollTop + "px"
-      );
-
-      // store scroll position after toggle being clicked
+    if (isHiddenOverflow) {
       setScrollTopPosition(document.documentElement.scrollTop);
+    }
+  }, [isHiddenOverflow]);
 
-      bodyElement.style.top = "var(--st, 0)";
+  useEffect(() => {
+    const bodyElement = document.querySelector("body") as HTMLElement;
+
+    if (isHiddenOverflow) {
+      bodyElement.style.top = String(-scrollTopPosition) + "px";
       bodyElement.style.inlineSize = "100%";
       bodyElement.style.position = "fixed";
       bodyElement.style.overflowY = "scroll";
       bodyElement.style.width = "100%";
     } else {
-      bodyElement.style.top = "unset";
+      // set back scrollPosition when modal closed
+      bodyElement.style.top = String(-scrollTopPosition) + "px";
+      document.documentElement.scrollTop = scrollTopPosition;
+
       bodyElement.style.inlineSize = "unset";
       bodyElement.style.position = "unset";
       bodyElement.style.overflowY = "unset";
       bodyElement.style.width = "unset";
-
-      // set back scrollPosition when modal closed
-      document.documentElement.scrollTop = scrollTopPosition;
     }
 
     return () => {
-      bodyElement.style.top = "unset";
       bodyElement.style.inlineSize = "unset";
       bodyElement.style.position = "unset";
       bodyElement.style.overflowY = "unset";
       bodyElement.style.width = "unset";
     };
-    
-  /* eslint-disable react-hooks/exhaustive-deps */
-  }, [...deps]);
+    /* eslint-disable react-hooks/exhaustive-deps */
+  }, [...deps, scrollTopPosition, isHiddenOverflow]);
 }
 
 export { useOverflowHidden };
