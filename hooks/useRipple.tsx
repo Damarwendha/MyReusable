@@ -9,9 +9,10 @@ interface Ripple {
 
 type ShowRipple = (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 
-export function useRipple(
-  style?: React.CSSProperties
-): [ShowRipple, React.ReactElement | null] {
+export function useRipple(style?: React.CSSProperties): {
+  showRipple: ShowRipple;
+  ripples: React.ReactElement | null;
+} {
   const [ripple, setRipple] = useState<Ripple | null>(null);
 
   const showRipple = (event: React.MouseEvent<HTMLElement>) => {
@@ -47,5 +48,8 @@ export function useRipple(
     setTimeout(() => setRipple(null), 700); // Remove the ripple after animation duration
   };
 
-  return [showRipple, ripple && <span key={ripple.key} style={ripple.style} />];
+  return {
+    showRipple,
+    ripples: ripple && <span key={ripple?.key} style={ripple?.style} />,
+  };
 }
