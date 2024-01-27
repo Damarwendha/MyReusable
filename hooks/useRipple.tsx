@@ -1,6 +1,15 @@
 import { useState } from "react";
 
+// Mandatory:
+// @keyframes useRippleAnimation {
+//   to {
+//     transform: scale(5);
+//     opacity: 0;
+//   }
+// }
+
 const MINIMUM_RIPPLE_SIZE = 100;
+const ANIMATION_DURATION_MS = 700;
 
 interface Ripple {
   key: number;
@@ -39,13 +48,13 @@ export function useRipple(style?: React.CSSProperties): {
         opacity: 0.4,
         pointerEvents: "none",
         animationName: "useRippleAnimation",
-        animationDuration: "0.7s",
+        animationDuration: String(ANIMATION_DURATION_MS) + "ms",
         ...style,
       },
     };
 
     setRipple(newRipple);
-    setTimeout(() => setRipple(null), 700); // Remove the ripple after animation duration
+    setTimeout(() => setRipple(null), ANIMATION_DURATION_MS);
   };
 
   return {
