@@ -3,19 +3,13 @@ Welcome to MyReusable, an open-source codes designed to save developers time by 
 
 Feel free to explore, copy, and adapt the code snippets from MyReusable to enhance your development workflow. This project is here to save you time and offer flexibility in building applications. Happy coding!
 
-### Custom Input Number 
-Not work with decimal numbers, but it might become possible by modifying the regex
+### Implement Input Number 
 ```
-                      <Input
-                        inputMode="numeric"
-                        pattern="[0-9]*"
-                        onChange={(e) => {
-                          const value = e.target.value.trim(); // Trim any leading/trailing spaces
-                          // Check if the input is numeric
-                          const numericValue = /^\d*$/.test(value)
-                            ? Number(value)
-                            : field.value;
-                          field.onChange(numericValue);
-                        }}
-                      />
+                    <Input
+                      inputMode="numeric"
+                      pattern="[0-9]*"
+                      onChange={(e) => {
+                        field.onChange(e.target.value.replace(/\D/, ""));
+                      }}
+                    />
 ```
