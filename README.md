@@ -13,3 +13,12 @@ Feel free to explore, copy, and adapt the code snippets from MyReusable to enhan
                       }}
                     />
 ```
+The issue with this approach is that the user can still use the "paste" to enter string values. This can be avoided by using zod as follows:
+```
+phone_number: z
+    .union([z.string(), z.number()])
+    .default("")
+    .refine((val) => /^[1-9]\d*$/.test(String(val)), {
+      message: "*Should be a valid number",
+    }),
+```
