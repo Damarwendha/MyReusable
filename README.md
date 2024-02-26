@@ -4,6 +4,7 @@ Welcome to MyReusable, an open-source codes designed to save developers time by 
 Feel free to explore, copy, and adapt the code snippets from MyReusable to enhance your development workflow. This project is here to save you time and offer flexibility in building applications. Happy coding!
 
 ### Custom Input Number 
+Not work with decimal numbers, but it might become possible by modifying the regex
 ```
                       <Input
                         inputMode="numeric"
