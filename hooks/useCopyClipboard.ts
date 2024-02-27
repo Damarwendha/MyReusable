@@ -1,3 +1,4 @@
+import { useToast } from "@/components/ui/use-toast";
 import {
   MutableRefObject,
   useCallback,
@@ -5,24 +6,27 @@ import {
   useRef,
   useState,
 } from "react";
-import toast from "react-hot-toast";
 
 export function useCopyClipboard<T extends HTMLElement>(
   text: string,
-  timeout = 1000
+  timeout = 0
 ) {
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const ref = useRef() as MutableRefObject<T>;
+  const { toast } = useToast();
 
   const copy = useCallback(async () => {
     await navigator.clipboard.writeText(text);
     setIsCopied(true);
 
     // Do additional thing after copied
-    // I add right away in here to reduce boiler code in my components
-    toast.success("Referral Link Copied!", {
-      className: "toast-success",
+    toast({
+      description: "Link has been successfully copied to your clipboard",
+      title: "Link Copied!! 📝",
+      className: "shadow-lg shadow-background",
+      duration: 3000,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [text]);
 
   useEffect(() => {
