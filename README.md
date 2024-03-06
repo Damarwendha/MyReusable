@@ -5,6 +5,14 @@ Feel free to explore, copy, and adapt the code snippets from MyReusable to enhan
 
 ## -) ADDITIONAL TIPS & TRICK
 
+### Card List Layout (prevent last line growing)
+```
+      <ul className="flex flex-wrap justify-center gap-8 lg:after:content-[''] lg:after:flex-[1_0_31%]">
+      <li className="shadow-lg flex-[1_0_48%] lg:flex-[1_0_31%]">Card</li>
+      </ul>
+
+```
+
 ### Implement Input Number 
 ```
                     <Input
