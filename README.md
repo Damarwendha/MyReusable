@@ -16,7 +16,7 @@ One issue arises when you have three or more columns with two empty spaces: the 
 
 (li) has a style width of calc(100% / var(--items-per-row) - var(--item-margin) - .01px).
 
-(ul) has a style width of 100%.
+(ul) has a style width of 100% with a flex.
 
 This layout might offer a solution to your problem.
 
