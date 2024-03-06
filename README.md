@@ -10,8 +10,8 @@ Feel free to explore, copy, and adapt the code snippets from MyReusable to enhan
       <ul className="flex flex-wrap justify-center gap-8 lg:after:content-[''] lg:after:flex-[1_0_31%]">
       <li className="shadow-lg flex-[1_0_48%] lg:flex-[1_0_31%]">Card</li>
       </ul>
-
 ```
+One issue is when you had 3 or more cols and you had two empty space,, the last child will start growing
 
 ### Implement Input Number 
 ```
