@@ -1,0 +1,17 @@
+.underline-hov-transfrom-l-to-r {
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+}
+.underline-hov-transfrom-l-to-r:after {
+  display: block;
+  content: "";
+  border-bottom: solid 2px var(--brand);
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+  transform-origin: 100% 50%;
+}
+.underline-hov-transfrom-l-to-r:hover:after {
+  transform: scaleX(1);
+  transform-origin: 0 50%;
+}
