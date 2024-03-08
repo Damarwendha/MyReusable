@@ -1,12 +1,16 @@
 import { useState } from "react";
 
-// Mandatory:
+// CSS MANDATORY:
 // @keyframes useRippleAnimation {
 //   to {
 //     transform: scale(5);
 //     opacity: 0;
 //   }
 // }
+
+// USAGE:
+// const { ripples, showRipple } = useRipple();
+// return <button onClick={(e) => showRipple(e)}>Click me!{ripples}</button>
 
 const MINIMUM_RIPPLE_SIZE = 100;
 const ANIMATION_DURATION_MS = 700;
