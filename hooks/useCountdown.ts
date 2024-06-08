@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface RCountdown {
   runCountdown: () => void;
@@ -6,7 +6,10 @@ interface RCountdown {
   isRunning: boolean;
 }
 
-export function useCountdown(time: number, action: any): RCountdown {
+export function useCountdown(
+  time: number,
+  actionWhenCountZero?: () => void
+): RCountdown {
   const [currentCount, setCount] = useState(time);
   const [isRunning, setIsRunning] = useState(false);
 
@@ -15,6 +18,7 @@ export function useCountdown(time: number, action: any): RCountdown {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let interval: any;
     if (isRunning && currentCount > 0) {
       interval = setInterval(() => {
@@ -23,14 +27,14 @@ export function useCountdown(time: number, action: any): RCountdown {
     }
 
     if (currentCount === 0) {
-      action();
+      actionWhenCountZero?.();
       setIsRunning(false);
     }
 
     return () => {
       clearInterval(interval);
     };
-  }, [currentCount, isRunning, action]);
+  }, [currentCount, isRunning, actionWhenCountZero]);
 
   return { runCountdown, currentCount, isRunning };
 }
