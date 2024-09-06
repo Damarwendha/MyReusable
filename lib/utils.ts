@@ -1,8 +1,25 @@
 // list:
+// - formatCheckboxData
 // - formatRupiah
 // - numberWithCommas
 // - upperCaseFirstLett
 // - censorInformation
+
+/**
+ *
+ * @param data e.g.: {value-nunu@gmail*com: true, value-08486674867: false}
+ * @returns e.g. ["nunu@gmail.com", "08486674867"]
+ * @implements  e.g. when register the field register(`pengirim[value-${p.pengirim.replace(/\./g, "*")}]`)
+ */
+export function formatCheckboxData(data: any) {
+  return Object.entries(data)
+    .filter(([key, value]) => value)
+    .map(([key]) => {
+      const extractedValue = key.replace("value-", "").replace("*", ".");
+      return extractedValue;
+    });
+}
+
 
 export function censorInformation(str: string) {
   // Extract the first two digits and the last four digits
